@@ -45,35 +45,41 @@ int main()
     /*Code to read from Config file*/
     pwd = sha(pwd);
     ofstream logger;
-    logger.open("secretID.log",std::ios_base::app);
+    logger.open("userCF75BE.log",std::ios_base::app);
     string user = getenv("USER");
     logger<<"File was opened by "<<user <<" | Using password "<<pwd <<" | at " <<str;
 
-    ifstream storedpwd("secretID.cfg");
+    ifstream storedpwd("userCF75BE.cfg");
     string line;
+    string storeduser;
     getline(storedpwd, line);
     while(!line.empty())
-	{
+        {
          /*code to compare entered password with config file*/
-	 if(line.compare(pwd) == 0)
-	    {
-		/*Code to Log*/
-		logger<<" | Success \n";
-	        /**Code if a Match is found**/
-                ifstream secret("secretID.txt");
-                if (secret.is_open())
-                   std::cout << secret.rdbuf();
-		secret.close();
-		return 0;
-	    }
-	else
-
-		getline(storedpwd, line);
-	}
-    cout<<"Try Again"<<endl;
+         if(line.compare(pwd) == 0)
+            {
+                getline(storedpwd,storeduser);
+                if(storeduser.compare(user) == 0)
+                {
+                    /*Code to Log*/
+                    logger<<" | Success \n";
+                    /**Code if a Match is found**/
+                    ifstream secret("userCF75BE.txt");
+                    if (secret.is_open())
+                       std::cout << secret.rdbuf();
+                    secret.close();
+                    return 0;
+                }
+                else
+                {
+                    cout<<"Username and password dont match"<<endl;
+                    logger<<" | Failure \n";
+                    return 0;
+                }
+             }
+                getline(storedpwd, line);
+         }
+    cout<<"Username and password dont match"<<endl;
     logger<<" | Failure \n";
     return 0;
-
-
-
 }
