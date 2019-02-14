@@ -1,0 +1,6 @@
+1> Copy the hashes and paste them to some online Hash cracher or some tools. Obtain password, beat the system.
+2> Change config file it is using - Use symbolic links if the File is not mentioned with full path while opening in the code.
+3> Look for popen or system -> Use these calls , stuff that they use in them to change permissions, print the ans etc.
+4> Writing to the secret file - misinfomation. Creating symbolic link to the original secret file / link config file as well.
+   so we have to use the part that writes to log to write to .txt file
+
